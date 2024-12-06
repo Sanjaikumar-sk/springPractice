@@ -18,8 +18,10 @@ public class FirstProjectApplication {
         objectCreation obj1 = object.getBean(objectCreation.class);
         objectCreation_2 obj2 = object.getBean(objectCreation_2.class);
 
-        obj1.objects();
+//        obj1.objects();
         obj2.anotherObjectTester();
+
+
     }
 
 }
