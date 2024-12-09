@@ -1,6 +1,7 @@
 package com.firstproject.helloworld;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -8,16 +9,17 @@ public class objectCreation_2 {
 
 //    Field Injection
 //    @Autowired
+//    @Qualifier("autoWired")
 //    public autoWired wiredObject;
-
-
+//
+//
 //    CONSTRUCTOR INJECTION:
 //    public objectCreation_2(autoWired wiredObject)
 //    {
 //        this.wiredObject = wiredObject;
 //    }
-
-
+//
+//
 //    SETTER INJECTION
 //    @Autowired
 //    public void setautoWired(autoWired wiredObject)
