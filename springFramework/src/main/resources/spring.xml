@@ -7,9 +7,6 @@
     <bean id="Developer" class="org.example.Developer">
     </bean>
 
-    <bean id="Developer1" class="org.example.Developer">
-    </bean>
-
-    <bean id="Developer2" class="org.example.Developer">
+    <bean id="Laptop" class="org.example.Laptop">
     </bean>
 </beans>
