@@ -10,5 +10,6 @@ public class App
         ApplicationContext context = new ClassPathXmlApplicationContext("spring.xml");
 //        Developer obj = (Developer) context.getBean("Developer");
 //        obj.build();
+
     }
 }
