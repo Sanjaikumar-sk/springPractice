@@ -7,7 +7,6 @@ import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Component;
 
 @Data
-@Builder
 @AllArgsConstructor
 @NoArgsConstructor
 public class Product {
