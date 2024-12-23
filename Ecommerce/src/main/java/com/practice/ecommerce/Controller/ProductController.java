@@ -2,6 +2,8 @@ package com.practice.ecommerce.Controller;
 
 import com.practice.ecommerce.Model.Product;
 import com.practice.ecommerce.Service.ProductService;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -26,14 +28,27 @@ public class ProductController {
     }
 
     @GetMapping("/products")
-    public List<Product> GetAllProducts()
+    public  List<Product> GetAllProducts()
     {
         return service.getAllProducts();
     }
 
-    @PostMapping("/addProduct")
-    public String addNewProduct( @RequestBody Product newProduct)
+    @GetMapping("/product/{ID}")
+    public ResponseEntity<Product> getProductByID(@PathVariable int ID)
     {
-        return service.addProduct(newProduct);
+        Product product = service.getProductByID(ID);
+        if (product != null)
+            return  new ResponseEntity<>(service.getProductByID(ID), HttpStatus.OK);
+
+        else
+            return new  ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
+
+
+
+//    @PostMapping("/addProduct")
+//    public String addNewProduct( @RequestBody Product newProduct)
+//    {
+//        return service.addProduct(newProduct);
+//    }
 }

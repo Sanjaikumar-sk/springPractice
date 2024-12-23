@@ -20,8 +20,12 @@ public class ProductService {
         return repo.findAll();
     }
 
-    public String addProduct( Product newProduct) {
-        repo.save(newProduct);
-        return "Product Added";
+    public Product getProductByID(int id) {
+        return repo.findById(id).orElse(null);
     }
+
+//    public String addProduct( Product newProduct) {
+//        repo.save(newProduct);
+//        return "Product Added";
+//    }
 }
