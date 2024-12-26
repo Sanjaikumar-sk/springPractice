@@ -1,5 +1,4 @@
 package com.practice.ecommerce.Controller;
-
 import com.practice.ecommerce.Model.Product;
 import com.practice.ecommerce.Service.ProductService;
 import org.springframework.http.HttpStatus;
@@ -58,6 +57,4 @@ public class ProductController {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR );
         }
     }
-
-
 }

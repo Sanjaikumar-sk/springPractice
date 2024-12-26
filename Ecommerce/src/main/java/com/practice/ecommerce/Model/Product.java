@@ -2,6 +2,8 @@ package com.practice.ecommerce.Model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -18,16 +20,18 @@ public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    @Size(min = 2, max = 50)
     private String name;
-    private String descp;
+    private String description;
     private String brand;
+    @Min(10)
     private BigDecimal price;
     private String category;
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-YYYY")
     private Date releaseDate;
-    private Boolean availablity;
-    private int quantity;
+    private Boolean productAvailable;
+    private int stockQuantity;
 
     private String imageName;
     private String imageType;
