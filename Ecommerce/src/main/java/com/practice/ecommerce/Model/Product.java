@@ -29,4 +29,9 @@ public class Product {
     private Boolean availablity;
     private int quantity;
 
+    private String imageName;
+    private String imageType;
+    @Lob
+    private byte[] imageData;
+
 }
