@@ -2,6 +2,7 @@ package com.practice.ecommerce.Service;
 
 import com.practice.ecommerce.Model.Product;
 import com.practice.ecommerce.Repository.GetProductList;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -26,11 +27,36 @@ public class ProductService {
         return repo.findById(id).orElse(null);
     }
 
-    public Product addProduct(Product product, MultipartFile image) throws IOException {
+    public Product addProduct(@NotNull Product product, @NotNull MultipartFile image) throws IOException {
         product.setImageName(image.getOriginalFilename());
         product.setImageType(image.getContentType());
         product.setImageData(image.getBytes());
 
         return repo.save(product);
+    }
+
+    public Product updateProduct(int id, MultipartFile image, Product product) throws IOException {
+
+//        CHECK IF THERE IS A ROW WITH ID.
+        Product product1 = repo.findById(id).orElse(null);
+
+//        IF NOT RETURN NULL.
+        if (product1 == null)
+            return product1;
+
+//        IF PRESENT SAVES THE UPDATED DATA AND RETURNS THE UPDATED PRODUCT.
+        else
+        {
+            product.setImageData(image.getBytes());
+            product.setImageName(image.getOriginalFilename());
+            product.setImageType(image.getContentType());
+
+            product1 = repo.save(product);
+            return product1;
+        }
+    }
+
+    public void deleteProduct(int id) {
+        repo.deleteById(id);
     }
 }
