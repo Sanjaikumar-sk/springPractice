@@ -23,7 +23,7 @@ public class SecurityService implements UserDetailsService {
         if(user == null)
         {
             System.out.println("User not found");
-            throw new UsernameNotFoundException("User not found");
+//            throw new UsernameNotFoundException("User not found");
         }
         System.out.println("User found");
         return new PrincipalUser(user);
