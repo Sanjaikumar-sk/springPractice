@@ -1,9 +1,12 @@
 package com.practice.ecommerce.Controller;
 import com.practice.ecommerce.Model.Product;
 import com.practice.ecommerce.Service.ProductService;
+import jakarta.servlet.http.HttpServletRequest;
+import org.springframework.http.HttpRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+//import org.springframework.security.web.csrf.CsrfToken;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -100,4 +103,9 @@ public class ProductController {
         return new ResponseEntity<>( product1, HttpStatus.OK);
     }
 
+//    @GetMapping("/getCSRFtoken")
+//    public CsrfToken getCSRFtoken(HttpServletRequest request)
+//    {
+//        return (CsrfToken) request.getAttribute("_csrf");
+//    }
 }
