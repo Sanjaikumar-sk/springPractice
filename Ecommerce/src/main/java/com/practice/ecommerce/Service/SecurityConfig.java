@@ -28,14 +28,6 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
-//        http.csrf().disable()  // Disable CSRF protection for testing purposes
-//                .authorizeRequests()
-//                .requestMatchers("/users/**").authenticated()
-//                .anyRequest().permitAll()
-//                .and()
-//                .formLogin();
-
-
         return http.csrf(customizer -> customizer.disable()).
                 authorizeHttpRequests(request -> request.anyRequest().authenticated()).
                 httpBasic(Customizer.withDefaults()).
@@ -44,7 +36,6 @@ public class SecurityConfig {
     @Bean
     public AuthenticationProvider authenticator()
     {
-
         System.out.println("Service start");
         DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
         provider.setPasswordEncoder(new BCryptPasswordEncoder());
