@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 
 import javax.crypto.KeyGenerator;
 import javax.crypto.SecretKey;
-import java.security.Key;
 import java.security.NoSuchAlgorithmException;
 import java.util.Base64;
 import java.util.Date;
@@ -20,6 +19,20 @@ import java.util.function.Function;
 @Service
 public class JWTService {
     private String secretKey = "";
+
+    public JWTService() {
+        try {
+
+//    GENERATING THE ACTUAL SIGNATURE FOR THE JWT
+            KeyGenerator keyGen = KeyGenerator.getInstance("HmacSHA256");
+            SecretKey secretKey1 = keyGen.generateKey();
+            secretKey = Base64.getEncoder().encodeToString(secretKey1.getEncoded());
+            System.out.println("SecretKey = "+ secretKey);
+
+        } catch (NoSuchAlgorithmException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
     public String generateToken(String username) {
 
@@ -32,32 +45,13 @@ public class JWTService {
                 .add(claims)
                 .subject(username)
                 .issuedAt(new Date(System.currentTimeMillis()))
-                .expiration(new Date(System.currentTimeMillis() + 1000 * 60 *5))
+                .expiration(new Date(System.currentTimeMillis() + 1000 * 60 *60))
                 .and()
                 .signWith(getSign())
                 .compact();
     }
 
-    private Key getSign() {
-
-        try {
-
-//    GENERATING THE ACTUAL SIGNATURE FOR THE JWT
-            KeyGenerator keyGen = KeyGenerator.getInstance("HmacSHA256");
-            SecretKey secretKey1 = keyGen.generateKey();
-            secretKey = Base64.getEncoder().encodeToString(secretKey1.getEncoded());
-            System.out.println("SecretKey = "+ secretKey);
-
-        } catch (NoSuchAlgorithmException e) {
-            throw new RuntimeException(e);
-        }
-
-        byte[] keyBytes = Decoders.BASE64.decode(secretKey);
-
-        return Keys.hmacShaKeyFor(keyBytes);
-    }
-
-    private SecretKey getKey() {
+    private SecretKey getSign() {
         byte[] keyBytes = Decoders.BASE64.decode(secretKey);
         return Keys.hmacShaKeyFor(keyBytes);
     }
@@ -74,7 +68,7 @@ public class JWTService {
 
     private Claims extractAllClaims(String token) {
         return Jwts.parser()
-                .verifyWith(getKey())
+                .verifyWith(getSign())
                 .build()
                 .parseSignedClaims(token)
                 .getPayload();
