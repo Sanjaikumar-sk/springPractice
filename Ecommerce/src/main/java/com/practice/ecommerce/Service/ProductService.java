@@ -1,8 +1,10 @@
 package com.practice.ecommerce.Service;
 
+import com.practice.ecommerce.Controller.ProductController;
 import com.practice.ecommerce.Model.Product;
 import com.practice.ecommerce.Repository.GetProductList;
 import org.jetbrains.annotations.NotNull;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -11,6 +13,7 @@ import java.util.List;
 
 @Service
 public class ProductService {
+
     private GetProductList repo;
 
     //    CONSTRUCTOR INJECTION

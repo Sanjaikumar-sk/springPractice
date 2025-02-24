@@ -9,6 +9,12 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/users")
 public class UserController {
 
+    @RequestMapping("/hello")
+    public String greet()
+    {
+        return "Hello, spring security. security bypassed";
+    }
+
     @Autowired
     private UserService service;
 

@@ -2,6 +2,7 @@ package com.practice.ecommerce.Controller;
 import com.practice.ecommerce.Model.Product;
 import com.practice.ecommerce.Service.ProductService;
 import jakarta.servlet.http.HttpServletRequest;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -17,6 +18,8 @@ import java.util.List;
 @CrossOrigin
 @RequestMapping("/api")
 public class ProductController {
+
+    @Autowired
     ProductService service;
 
     public ProductController( ProductService service )
